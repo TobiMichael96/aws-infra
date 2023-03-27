@@ -1,0 +1,7 @@
+{
+  "name": "aws-infra",
+  "version": "1.0.0",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.299.0"
+  }
+}

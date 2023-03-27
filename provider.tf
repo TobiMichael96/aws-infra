@@ -11,7 +11,9 @@ provider "aws" {
   region = var.region
   default_tags {
     tags = {
-      Terraform = true
+      Terraform   = true
+      Environment = var.environment
+      Prefix      = var.resource_prefix
     }
   }
 }

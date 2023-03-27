@@ -4,7 +4,7 @@ import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-sec
 export const handler = async (event, context) => {
     console.log("EVENT: \n" + JSON.stringify(event, null, 2));
 
-    const region_input = process.env.region //"eu-central-1";
+    const region_input = process.env.region;
     const secret_id_input = process.env.secret_id;
 
     const client = new SecretsManagerClient({ "region": region_input});
