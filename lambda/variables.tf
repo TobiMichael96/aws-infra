@@ -68,8 +68,8 @@ variable "dead_letter_arn" {
 }
 
 variable "config_secret_arn" {
-  default     = ""
-  type        = string
+  default = []
+  type = list(string)
   description = "Arn of the secret for the credentials/configuration."
 }
 

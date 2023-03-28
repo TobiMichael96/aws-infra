@@ -32,3 +32,6 @@ default.tfvars
 backend.tfvars
 
 env.vars
+
+# Ignore ZIP files
+*.zip

@@ -18,6 +18,18 @@ provider "aws" {
   }
 }
 
+provider "aws" {
+  region = "us-east-1"
+  alias  = "certificate"
+  default_tags {
+    tags = {
+      Terraform   = true
+      Environment = var.environment
+      Prefix      = var.resource_prefix
+    }
+  }
+}
+
 terraform {
   backend "s3" {
   }

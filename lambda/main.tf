@@ -28,7 +28,7 @@ resource "aws_iam_role" "default" {
             "logs:PutLogEvents"
           ],
           Effect = "Allow",
-          Resource = "${local.lambda_function_name}-${var.environment}"
+          Resource = "arn:aws:logs:*:*:${local.lambda_function_name}-${var.environment}"
         }
       ]
     })
