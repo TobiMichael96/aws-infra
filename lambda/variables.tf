@@ -49,25 +49,25 @@ variable "lambda_timeout" {
   description = "Lambda timeout."
 }
 
-variable "kms_arn" {
+variable "kms_arns" {
   default = []
   type = list(string)
   description = "ARN of the KMS keys."
 }
 
-variable "dynamodb_arn" {
+variable "dynamodb_arns" {
   default = []
   type = list(string)
   description = "ARN of the dynamo db."
 }
 
-variable "dead_letter_arn" {
+variable "dead_letter_arns" {
   default = []
   type = list(string)
   description = "ARN of the dead letter sqs queue."
 }
 
-variable "config_secret_arn" {
+variable "config_secret_arns" {
   default = []
   type = list(string)
   description = "Arn of the secret for the credentials/configuration."

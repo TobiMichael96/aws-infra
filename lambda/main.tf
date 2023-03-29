@@ -35,7 +35,7 @@ resource "aws_iam_role" "default" {
   }
 
   dynamic "inline_policy" {
-    for_each = toset(var.kms_arn)
+    for_each = length(var.kms_arns) != 0 ? [1] : []
     content {
       name   = "kms-access"
       policy = jsonencode({
@@ -47,7 +47,7 @@ resource "aws_iam_role" "default" {
               "kms:GenerateDataKey"
             ]
             Effect   = "Allow"
-            Resource = inline_policy.value
+            Resource = var.kms_arns
           }
         ]
       })
@@ -55,7 +55,7 @@ resource "aws_iam_role" "default" {
   }
 
   dynamic "inline_policy" {
-    for_each = toset(var.dynamodb_arn)
+    for_each = length(var.dynamodb_arns) != 0 ? [1] : []
     content {
       name = "dynamodb-access"
 
@@ -69,7 +69,7 @@ resource "aws_iam_role" "default" {
               "dynamodb:ListTables"
             ]
             Effect   = "Allow"
-            Resource = inline_policy.value
+            Resource = var.dynamodb_arns
           },
         ]
       })
@@ -77,7 +77,7 @@ resource "aws_iam_role" "default" {
   }
 
   dynamic "inline_policy" {
-    for_each = toset(var.dead_letter_arn)
+    for_each = length(var.dead_letter_arns) != 0 ? [1] : []
     content {
       name = "sqs-access"
 
@@ -87,7 +87,7 @@ resource "aws_iam_role" "default" {
           {
             Action = "sqs:*"
             Effect   = "Allow"
-            Resource = inline_policy.value
+            Resource = var.dead_letter_arns
           },
         ]
       })
@@ -95,7 +95,7 @@ resource "aws_iam_role" "default" {
   }
 
   dynamic "inline_policy" {
-    for_each = toset(var.config_secret_arn)
+    for_each = length(var.config_secret_arns) != 0 ? [1] : []
     content {
       name = "secret-access"
 
@@ -108,7 +108,7 @@ resource "aws_iam_role" "default" {
               "secretsmanager:GetSecretValue"
             ]
             Effect   = "Allow"
-            Resource = inline_policy.value
+            Resource = var.config_secret_arns
           },
         ]
       })
@@ -139,7 +139,7 @@ resource "aws_lambda_function" "default" {
   }
 
   dynamic "dead_letter_config" {
-    for_each = toset(var.dead_letter_arn)
+    for_each = toset(var.dead_letter_arns)
     content {
       target_arn = dead_letter_config.value
     }
