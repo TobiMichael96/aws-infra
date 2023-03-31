@@ -41,13 +41,11 @@ jobs:
        run: terraform plan -no-color -input=false
        continue-on-error: true
        if: github.event_name =! 'pull_request'
-     - name: Terraform plan
-       id: plan
-       run: terraform plan -no-color -input=false
-       continue-on-error: true
+     - name: Update Pull Request
+       uses: actions/github-script@v6
        if: github.event_name == 'pull_request'
        env:
-         PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+         PLAN: "${{ steps.plan.outputs.stdout }}"
        with:
          script: |
            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
