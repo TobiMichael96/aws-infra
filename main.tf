@@ -42,13 +42,13 @@ module "tobiasmichael_website" {
       error_caching_min_ttl = 30,
       error_code            = 403,
       response_code         = 200,
-      response_page_path    = "error.html"
+      response_page_path    = "/error.html"
     },
     {
       error_caching_min_ttl = 30,
       error_code            = 404,
       response_code         = 200,
-      response_page_path    = "error.html"
+      response_page_path    = "/error.html"
     }
   ]
 
