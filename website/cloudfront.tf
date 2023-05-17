@@ -10,7 +10,7 @@ resource "aws_cloudfront_distribution" "website" {
 
   web_acl_id = var.cloudfront_web_acl_id
 
-  comment = var.comment_for_cloudfront_website
+  comment = var.website_domain_name
 
   default_cache_behavior {
     cache_policy_id          = "658327ea-f89d-4fab-a63d-7e88639e58f6" # Managed-CachingOptimized
