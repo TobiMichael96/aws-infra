@@ -57,3 +57,27 @@ module "tobiasmichael_website" {
     aws.certificate = aws.certificate
   }
 }
+
+module "selina_zone" {
+  source = "./route53"
+  domain = "selinaklepic.com"
+  additional_records = [
+    {
+      name    = "selinaklepic.com"
+      type    = "MX"
+      ttl     = "150"
+      records = ["5 smtpin.rzone.de"]
+    },
+  ]
+}
+
+module "selina_website" {
+  source                 = "./website"
+  route53_hosted_zone_id = module.selina_zone.zone_id
+  website_domain_name    = "selinaklepic.com"
+
+  providers = {
+    aws             = aws,
+    aws.certificate = aws.certificate
+  }
+}
