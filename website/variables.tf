@@ -57,12 +57,6 @@ variable "website_server_side_encryption_configuration" {
   default     = {}
 }
 
-variable "comment_for_cloudfront_website" {
-  description = "Comment for the Website CloudFront Distribution"
-  type        = string
-  default     = ""
-}
-
 variable "cloudfront_viewer_protocol_policy" {
   description = "Use this element to specify the protocol that users can use to access the files in the origin specified by TargetOriginId when a request matches the path pattern in PathPattern. One of allow-all, https-only, or redirect-to-https. Defautls to redirect-to-https"
   type        = string
